@@ -2,10 +2,12 @@ package com.hd.cryptotrader.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
 import com.binance.api.client.domain.event.CandlestickEvent;
 
+@RefreshScope
 @Service
 public class CurrentTickerServiceImpl implements CurrentTickerService{
 
@@ -72,7 +74,7 @@ public class CurrentTickerServiceImpl implements CurrentTickerService{
 	}
 
 	private CandlestickEvent getMarketTicker(String market) {
-		CandlestickEvent currentPrice = null;
+		CandlestickEvent currentPrice = new CandlestickEvent();
 		if(market != null) {
 			if (market.equalsIgnoreCase("BTCUSDT")) {
 				currentPrice = btcCandlestickEvent;

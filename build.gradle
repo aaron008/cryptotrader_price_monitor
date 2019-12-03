@@ -22,6 +22,8 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.10.0'
     compile 'com.fasterxml.jackson.core:jackson-core:2.10.0'
 	compile 'org.springframework.boot:spring-boot-starter-security'
+	compile 'org.springframework.boot:spring-boot-starter-actuator'
+	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-web-services'
 	compile 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
 	compile 'org.springframework.boot:spring-boot-starter-mail'

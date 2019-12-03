@@ -1,25 +1,21 @@
 package com.hd.cryptotrader.scheduler;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 
-import org.slf4j.Logger;
+import org.apache.logging.log4j.Level;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
 import com.hd.cryptotrader.websocket.WebSocketClient;
+import lombok.extern.log4j.Log4j2;
 
-import ch.qos.logback.classic.Level;
-import lombok.extern.log4j.Log4j;
-
+@Log4j2
 @Component
-@Log4j
 public class PriceMonitorScheduler {
 
 	@Autowired
 	private WebSocketClient client;
 	
-	@Scheduled(cron = "30 59 23 * * ?")
+	@Scheduled(cron = "59 * * * * ?")
 	  public void binancePriceMonitor() throws InterruptedException {
 			try {
 				client.startPriceMonitor();

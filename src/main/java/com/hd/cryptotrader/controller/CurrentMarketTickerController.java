@@ -1,10 +1,11 @@
 package com.hd.cryptotrader.controller;
 
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,9 +20,12 @@ public class CurrentMarketTickerController {
 	@Autowired
 	private CurrentTickerService service;
 	
+	@Autowired
+	@Qualifier("BTCCandlestickEvent")
+	private CandlestickEvent btcCandlestickEvent;
 	
 	@GetMapping(value = "/price/{market}")
-	public ResponseEntity<CurrentTickerResponse> placeETHOrdersOnExchanges(@PathParam(value = "market") String market) throws Exception{
+	public ResponseEntity<CurrentTickerResponse> placeETHOrdersOnExchanges(@PathVariable(value = "market") String market) throws Exception{
 		CandlestickEvent currentTicker = service.getCurrentTicker(market);
 		CurrentTickerResponse currentTickerResponse = new CurrentTickerResponse();
 		currentTickerResponse.setCurrentTicker(currentTicker);
